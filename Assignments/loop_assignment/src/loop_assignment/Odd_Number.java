@@ -9,6 +9,9 @@ public class Odd_Number {
 			if(i%2!=0) {
 				System.out.print(i+" ");
 			}
+/* Used same method of even numbers except changed line 9
+ * so that if the remainder does not equal 0 it is printed
+ */
 		
 		}
 
