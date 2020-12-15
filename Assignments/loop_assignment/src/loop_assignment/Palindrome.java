@@ -4,21 +4,21 @@ public class Palindrome {
 
 	public static void main(String[] args) {
 		
-		String word = "racecar";
+		String word = "tacocaT";
 		
-		if (isPalindrome(word) == true) {
-			System.out.println(word + " is a Palindrome");
+		if (isPalindrome(word.toLowerCase()) == true) {
+			System.out.println(word + " is a palindrome");
 		}
-		else System.out.println(word + " is not a Palindrome");
+		else System.out.println(word.toLowerCase() + " is not a palindrome");
 	}
 	
 	public static boolean isPalindrome(String word) {
-		int f=0, b=word.length()-1;
-		while (f < b) {
-			if (word.charAt(f) != word.charAt(b))
+		int front=0, back=word.length()-1;
+		while (front < back) {
+			if (word.charAt(front) != word.charAt(back))
 					return false;
-			f++;
-			b--;
+			front++;
+			back--;
 		}
 		return true;
 	}

@@ -3,7 +3,7 @@ package loop_assignment;
 public class Fibonacci {
 	public static void main(String[] args) {
 		
-		Fib(20);
+		Fib(10);
 		
 	}
 	
