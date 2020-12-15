@@ -3,9 +3,7 @@ package loop_assignment;
 public class Palindrome {
 
 	public static void main(String[] args) {
-		
 		String word = "tacocaT";
-		
 		if (isPalindrome(word.toLowerCase()) == true) {
 			System.out.println(word + " is a palindrome");
 		}
@@ -22,5 +20,4 @@ public class Palindrome {
 		}
 		return true;
 	}
-
 }
