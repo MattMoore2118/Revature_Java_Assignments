@@ -37,19 +37,11 @@ public class Tasks_3_4_and5 {
 				}
 				
 				//Task 5 Max and Min
-				int max=0;
-				int min=0;
-				for (int i = 0; i < ar.length; i++) {
-					if(ar[i]>max) {
-						max = ar[i];
-					}
-					if(ar[i]<min) {
-						min = ar[i];
-					}
-						
-				}
-				System.out.println(max);
-				System.out.println(min);
+				Arrays.sort(ar);
+				int min = ar[0];
+				int max = ar[ar.length-1];
+				System.out.println("Max is: "+max+ "\nMin is: "+min);
+				
 			}
 
 
