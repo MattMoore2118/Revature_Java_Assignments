@@ -10,12 +10,13 @@ public class Player {
 	private int goals;
 	private Date dob;
 	private long earnings;
+	private String team_name;
 	
 	public Player() {
 		// TODO Auto-generated constructor stub
 	}
 
-	public Player(int id, String player_name, int team_id, int goals, Date dob, long earnings) {
+	public Player(int id, String player_name, int team_id, int goals, Date dob, long earnings, String team_name) {
 		super();
 		this.id = id;
 		this.player_name = player_name;
@@ -23,6 +24,7 @@ public class Player {
 		this.goals = goals;
 		this.dob = dob;
 		this.earnings = earnings;
+		this.team_name = team_name;
 	}
 
 	public int getId() {
@@ -73,10 +75,18 @@ public class Player {
 		this.earnings = earnings;
 	}
 
+	public String getTeam_name() {
+		return team_name;
+	}
+
+	public void setTeam_name(String team_name) {
+		this.team_name = team_name;
+	}
+
 	@Override
 	public String toString() {
 		return "Player [id=" + id + ", player_name=" + player_name + ", team_id=" + team_id + ", goals=" + goals
-				+ ", dob=" + dob + ", earnings=" + earnings + "]";
+				+ ", dob=" + dob + ", earnings=" + earnings + ", team_name=" + team_name + "]";
 	}
 	
 	

@@ -39,4 +39,8 @@ select sum(goals) from player;
 select * from player
 where dob = '1991-06-28';
 
+select * from player
+inner join team on team.team_id = player.team_id;
+
+
 
