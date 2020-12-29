@@ -1,5 +1,6 @@
 package comm.app.main;
 
+import java.util.List;
 import java.util.Scanner;
 
 import comm.app.exception.BusinessException;
@@ -33,7 +34,7 @@ public class PlayerSearchMain {
 			}
 			
 			switch (ch) {
-			case 1:
+			case 1:// By player ID
 				System.out.println("Enter Player ID to get Player Details");
 				try {
 					int id=Integer.parseInt(sc.nextLine());
@@ -50,31 +51,71 @@ public class PlayerSearchMain {
 					}
 				break;
 
-			case 2:
-				System.out.println("Thank you for your interest this option is still under construction");
-	
+			case 2: //By player earnings (long/contact from Dr. Vinay examples)
+				System.out.println("Enter Player Earnings to get Player details");
+				try {
+					long earnings=Long.parseLong(sc.nextLine());
+					//code to service
+					Player player=playerSearchService.getPlayerByEarnings(earnings);
+					if(player!=null) {
+						System.out.println("Player found with earnings: "+earnings+" details of player :");
+						System.out.println(player);
+					}
+					}catch(NumberFormatException e) {
+						System.out.println("Player earnings cannot be special characters, symbols, or white spaces. Must be numeric");
+					} catch (BusinessException e) {
+						System.out.println(e.getMessage());
+					}
 				break;
-			case 3:
+				
+			case 3: //All players with certain number of goals
+				System.out.println("Enter number of goals to retrieve the Players detials");
+				try {
+					int goals=Integer.parseInt(sc.nextLine());
+					//code to service
+					List<Player> goalsplayersList=playerSearchService.getPlayersByGoals(goals);
+					if(goalsplayersList!=null) {
+						System.out.println(goalsplayersList.size()+" player(s) found with "+goals+" goals"+" \ndetails of player(s) :");
+						for(Player p:goalsplayersList) {
+							System.out.println(p);
+						}
+					}
+					}catch(NumberFormatException e) {
+						System.out.println("Number of Goals cannot be special characters, symbols, or white spaces. Must be numeric");
+					} catch (BusinessException e) {
+						System.out.println(e.getMessage());
+					}
+				break;
+				
+			case 4: //All players from certain team
+				System.out.println("Enter Team name to get all players from that team");
+				try {
+					String team_name=sc.nextLine();
+					List<Player> teamplayersList=playerSearchService.getPlayersByTeamName(team_name);
+					if(teamplayersList!=null) {
+						System.out.println(teamplayersList.size()+" player(s) found who play for "+team_name+" \ndetails of player(s) :");
+						for(Player p:teamplayersList) {
+							System.out.println(p);
+						}
+					}
+				} catch (BusinessException e) {
+					System.out.println(e.getMessage());
+				}
+				
+				break;
+			case 5: //Players by name
 				System.out.println("Thank you for your interest this option is still under construction");
 				
 				break;
-			case 4:
+			case 6: //Players by dob
 				System.out.println("Thank you for your interest this option is still under construction");
 				
 				break;
-			case 5:
+			case 7: //All players in db
 				System.out.println("Thank you for your interest this option is still under construction");
 				
 				break;
-			case 6:
-				System.out.println("Thank you for your interest this option is still under construction");
-				
-				break;
-			case 7:
-				System.out.println("Thank you for your interest this option is still under construction");
-				
-				break;
-			case 8:
+			case 8: //Exit
 				System.out.println("Thanks for using our Player Search App V1.0");
 				
 				break;

@@ -25,8 +25,13 @@ public class PlayerSearchServiceImpl implements PlayerSearchService {
 
 	@Override
 	public Player getPlayerByEarnings(long earnings) throws BusinessException {
-		// TODO Auto-generated method stub
-		return null;
+		Player player=null;
+		if(earnings > 0L && earnings < 1000000000L) {
+			player=playerSearchDAO.getPlayerByEarnings(earnings);
+		}else {
+			throw new BusinessException("Entered Earnings of "+earnings+" is invalid");
+		}
+		return player;
 	}
 
 	@Override
@@ -37,14 +42,24 @@ public class PlayerSearchServiceImpl implements PlayerSearchService {
 
 	@Override
 	public List<Player> getPlayersByGoals(int goals) throws BusinessException {
-		// TODO Auto-generated method stub
-		return null;
+		List<Player> goalsplayersList=null;
+		if(goals >= 0) {
+			goalsplayersList = playerSearchDAO.getPlayersByGoals(goals);
+		}else {
+			throw new BusinessException("Entered goals "+goals+" is invalid");
+		}
+		return goalsplayersList;
 	}
 
 	@Override
 	public List<Player> getPlayersByTeamName(String team_name) throws BusinessException {
-		// TODO Auto-generated method stub
-		return null;
+		List<Player> teamplayersList=null;
+		if(team_name != null && team_name.matches("[ A-Za-z]{3,20}")) {
+			teamplayersList = playerSearchDAO.getPlayersByTeamName(team_name);
+		}else {
+			throw new BusinessException("Entered team name "+team_name+" is invalid");
+		}
+		return teamplayersList;
 	}
 
 	@Override
