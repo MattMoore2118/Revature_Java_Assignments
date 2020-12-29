@@ -73,7 +73,7 @@ public class PlayerCrudDAOImpl implements PlayerCrudDAO{
 	public Player getPlayerById(int id) throws BusinessException {
 		Player player = null;
 		try(Connection connection=PostgreSQLConnection.getConnection()){
-			String sql = "select player_name,team_id,goals,dob,earnings from \"Test\".player where id=?";
+			String sql = "select player_name,team_id,goals,dob,earnings,team_name from \"Test\".player where id=?";
 			PreparedStatement preparedStatement = connection.prepareStatement(sql);
 			preparedStatement.setInt(1, id);
 			ResultSet resultSet = preparedStatement.executeQuery();
@@ -85,6 +85,7 @@ public class PlayerCrudDAOImpl implements PlayerCrudDAO{
 				player.setGoals(resultSet.getInt("goals"));
 				player.setDob(resultSet.getDate("dob"));
 				player.setEarnings(resultSet.getLong("earnings"));
+				player.setTeam_name(resultSet.getString("team_name"));
 			}else {
 				throw new BusinessException("No player found with ID: "+id);
 			}
@@ -98,7 +99,7 @@ public class PlayerCrudDAOImpl implements PlayerCrudDAO{
 	public List<Player> getAllPlayers() throws BusinessException {
 		List<Player> playersList=new ArrayList<>();
 		try(Connection connection=PostgreSQLConnection.getConnection()){
-			String sql = "select id,player_name,team_id,goals,dob,earnings from \"Test\".player";
+			String sql = "select id,player_name,team_id,goals,dob,earnings,team_name from \"Test\".player";
 			PreparedStatement preparedStatement = connection.prepareStatement(sql);
 			ResultSet resultSet = preparedStatement.executeQuery();
 			while(resultSet.next()) {
@@ -109,6 +110,7 @@ public class PlayerCrudDAOImpl implements PlayerCrudDAO{
 				player.setGoals(resultSet.getInt("goals"));
 				player.setDob(resultSet.getDate("dob"));
 				player.setEarnings(resultSet.getLong("earnings"));
+				player.setTeam_name(resultSet.getString("team_name"));
 				playersList.add(player);
 			}
 			if(playersList.size() == 0) {
