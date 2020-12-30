@@ -10,6 +10,8 @@ import comm.app.service.impl.PlayerSearchServiceImpl;
 
 public class PlayerSearchMain {
 
+	private static final String player_name = null;
+
 	public static void main(String[] args) {
 		Scanner sc=new Scanner(System.in);
 		System.out.println("Welcome to Player Search app V1.0");
@@ -103,16 +105,51 @@ public class PlayerSearchMain {
 				}
 				
 				break;
+				
 			case 5: //Players by name
-				System.out.println("Thank you for your interest this option is still under construction");
-				
+				System.out.println("Enter Player name to get player detials");
+				try {
+					String name=sc.nextLine();
+					List<Player> PlayerNameList=playerSearchService.getPlayersByName(name);
+					if(PlayerNameList!=null) {
+						System.out.println(PlayerNameList.size()+" player(s) named "+name+" \ndetails of player(s) :");
+						for(Player p:PlayerNameList) {
+							System.out.println(p);
+						}
+					}
+				} catch (BusinessException e) {
+					System.out.println(e.getMessage());
+				}
 				break;
-			case 6: //Players by dob
-				System.out.println("Thank you for your interest this option is still under construction");
 				
+			case 6: //Players by dob
+				System.out.println("Enter Player DOB to get player details");
+				try {
+					String dob=sc.nextLine();
+					List<Player> DOBplayerList=playerSearchService.getPlayersByDob(dob);
+					if(DOBplayerList!=null) {
+						System.out.println(DOBplayerList.size()+" player(s) born on "+dob+" \ndetails of player(s) :");
+						for(Player p:DOBplayerList) {
+							System.out.println(p);
+						}
+					}
+				} catch (BusinessException e) {
+					System.out.println(e.getMessage());
+				}
 				break;
 			case 7: //All players in db
-				System.out.println("Thank you for your interest this option is still under construction");
+				System.out.println("All Players in Database");
+				try {
+					List<Player> AllplayersList=playerSearchService.getAllPlayers();
+					if(AllplayersList != null) {
+						System.out.println(AllplayersList.size()+" found in database... printing details");
+						for(Player p:AllplayersList) {
+							System.out.println(p);
+						}
+					}
+				} catch (BusinessException e) {
+					System.out.println(e.getMessage());
+				}
 				
 				break;
 			case 8: //Exit

@@ -36,8 +36,9 @@ public class PlayerSearchServiceImpl implements PlayerSearchService {
 
 	@Override
 	public List<Player> getAllPlayers() throws BusinessException {
-		// TODO Auto-generated method stub
-		return null;
+		List<Player> AllplayersList=null;
+		AllplayersList = playerSearchDAO.getAllPlayers();
+		return AllplayersList;
 	}
 
 	@Override
@@ -64,14 +65,24 @@ public class PlayerSearchServiceImpl implements PlayerSearchService {
 
 	@Override
 	public List<Player> getPlayersByName(String name) throws BusinessException {
-		// TODO Auto-generated method stub
-		return null;
+		List<Player> PlayerNameList = null;
+		if(name != null && name.matches("[ A-za-z]{2,30}")) {
+			PlayerNameList = playerSearchDAO.getPlayersByName(name);
+		}else {
+			throw new BusinessException("Entered name "+name+" is invalid");
+		}
+		return PlayerNameList;
 	}
 
 	@Override
 	public List<Player> getPlayersByDob(String dob) throws BusinessException {
-		// TODO Auto-generated method stub
-		return null;
+		List<Player> DOBplayerList = null;
+		if(dob != null && dob.matches("[0-9]{4}-[0-9]{2}-[0-9]{2}")) {
+			DOBplayerList = playerSearchDAO.getPlayersByDob(dob);
+		}else {
+			throw new BusinessException("Entered DOB "+dob+" is invalid \nPlease enter as yyyy-mm-dd");
+		}
+		return DOBplayerList;
 	}
 
 }
