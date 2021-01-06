@@ -18,7 +18,7 @@ public class Main {
 		//Step 2 - Open Connection (url,username,password)
 		String url = "jdbc:postgresql://localhost:5432/postgres";
 		String username = "postgres";
-		String password = "Ynwa3713640";
+		String password = "password";
 		connection=DriverManager.getConnection(url, username, password);
 		System.out.println("Connection Success");
 		//Step 3 - Create Statement
